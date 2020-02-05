@@ -1,0 +1,40 @@
+.DropzoneIcon {
+  border: 2px solid #000000;
+  background-color: #00000077;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.DropzoneIcon img {
+  position: absolute;
+  align-self: center;
+  user-select: none;
+}
+
+.DropzoneInput {
+  display: none;
+}
+
+@media screen and (min-width: 901px) {
+  .DropzoneIcon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .DropzoneIcon img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .DropzoneIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .DropzoneIcon img {
+    width: 36px;
+    height: 36px;
+  }
+}

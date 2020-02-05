@@ -1,0 +1,35 @@
+.CarouselSliderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SlideWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 75%;
+}
+
+.SlideWrapper img {
+  border: 2px solid #000000;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.SlideWrapper img:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 4px #00000088;
+}
+
+.SlideWrapper img:hover + .SlideCaption {
+  bottom: -5px;
+}
+
+.SlideCaption {
+  position: absolute;
+  bottom: 5px;
+}

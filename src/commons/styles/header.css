@@ -1,0 +1,25 @@
+.HeaderWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #888888;
+  border-radius: 0;
+  border-bottom: 2px solid #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 4px;
+}
+
+.HeaderWelcome {
+  margin: 0 4px 0 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.HeaderLanguage {
+  width: 48px;
+}

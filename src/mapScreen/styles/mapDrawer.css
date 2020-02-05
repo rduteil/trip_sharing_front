@@ -1,0 +1,116 @@
+.MapDrawerWrapper {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  border: 2px solid #000000;
+  background-color: #00000077;
+  scrollbar-color: #ffffff77 #00000000;
+  padding-right: 2px;
+  overflow-y: scroll;
+}
+
+.MapDrawerWrapper::-webkit-scrollbar {
+  background-color: #00000000;
+}
+
+.MapDrawerWrapper::-webkit-scrollbar-thumb {
+  background-color: #ffffff77;
+}
+
+@media screen and (min-width: 901px) {
+  .MapDrawerWrapper {
+    height: calc(100% - 57px);
+    min-width: 250px;
+  }
+
+  .MapDrawerWrapperHidden {
+    left: -400px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .MapDrawerWrapper {
+    height: calc(100% - 47px);
+    min-width: 220px;
+  }
+
+  .MapDrawerWrapperHidden {
+    left: -300px;
+  }
+}
+
+.MapDrawer {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  overflow-y: visible;
+  min-height: calc(100% + 1px);
+}
+
+.MapDrawerLine {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  justify-content: space-between;
+}
+
+.MapDrawerIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.MapDrawerIcon img {
+  position: absolute;
+  align-self: center;
+  user-select: none;
+}
+
+.MapDrawerElement {
+  border: 0;
+  background-color: #00000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+.MapDrawerSeparator {
+  margin: 2px 0;
+  border-bottom: 1px solid #ffffff;
+}
+
+.MapDrawerClickable {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.MapDrawerClickable * {
+  user-select: none;
+}
+
+.MapDrawerTransport {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+}
+
+.MapDrawerTransport img {
+  position: absolute;
+  align-self: center;
+  user-select: none;
+}
+
+.MapDrawerInsight {
+  min-height: 100px;
+  padding: 10px 5px;
+  border: 1px dashed #ffffff;
+  background-color: #ffffff55;
+  resize: none;
+  color: #ffffff;
+  overflow: hidden;
+  line-height: 20px;
+}
+
+.MapDrawerInsight::placeholder {
+  color: #ffffffbb;
+}

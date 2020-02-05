@@ -1,0 +1,9 @@
+.MapDisplayer {
+  border: 2px solid #000000;
+  background-color: #aad3df;
+  width: 100%;
+}
+
+.ol-overlay-container {
+  transition: none;
+}

@@ -1,0 +1,244 @@
+.SpinnerOuter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+}
+
+.SpinnerOrbit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #00000055;
+  border-radius: 50%;
+}
+
+.SpinnerMarsOrbit {
+  width: 25vh;
+  height: 25vh;
+  -webkit-animation: spin 12s linear 0s infinite;
+  animation: spin 30s linear 0s infinite;
+}
+
+.SpinnerEarthOrbit {
+  width: 70%;
+  height: 70%;
+  -webkit-animation: spin 7.4s linear 0s infinite;
+  animation: spin 20s linear 0s infinite;
+}
+
+.SpinnerVenusOrbit {
+  width: 70%;
+  height: 70%;
+  -webkit-animation: spin 3s linear 0s infinite;
+  animation: spin 10s linear 0s infinite;
+}
+
+.SpinnerMoonOrbit {
+  position: absolute;
+  top: -0.75vh;
+  left: -0.75vh;
+  width: 200%;
+  height: 200%;
+  -webkit-animation: spin 3s linear 0s infinite;
+  animation: spin 5s linear 0s infinite;
+}
+
+.SpinnerPlanet {
+  position: absolute;
+  top: -0.75vh;
+  width: 1.5vh;
+  height: 1.5vh;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.SpinnerMoon {
+  position: absolute;
+  top: -0.3vh;
+  width: 0.6vh;
+  height: 0.6vh;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+.SpinnerSun {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 15px 0 #000000cc;
+}
+
+.SpinnerRayBox {
+  position: absolute;
+  display: flex;
+  z-index: 5;
+  -webkit-animation: ray_anim 120s linear infinite;
+  animation: ray_anim 120s linear infinite;
+}
+
+.SpinnerRay {
+  background: -webkit-linear-gradient(
+    top,
+    rgba(180, 180, 180, 0) 0%,
+    rgba(180, 180, 180, 0.8) 50%,
+    rgba(180, 180, 180, 0) 100%
+  );
+  background: linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 100%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border-radius: 80% 80% 0 0;
+  position: absolute;
+}
+
+.ray1 {
+  height: 100px;
+  width: 20px;
+  transform: rotate(180deg);
+  top: -90px;
+  left: -10px;
+}
+
+.ray2 {
+  height: 50px;
+  width: 16px;
+  transform: rotate(220deg);
+  top: -45px;
+  left: 10px;
+}
+
+.ray3 {
+  height: 80px;
+  width: 12px;
+  transform: rotate(250deg);
+  top: -55px;
+  left: 40px;
+}
+
+.ray4 {
+  height: 90px;
+  width: 14px;
+  transform: rotate(305deg);
+  top: -35px;
+  left: 10px;
+}
+
+.ray5 {
+  height: 110px;
+  width: 20px;
+  transform: rotate(-15deg);
+  top: -15px;
+  left: 0px;
+}
+
+.ray6 {
+  height: 50px;
+  width: 26px;
+  transform: rotate(30deg);
+  top: 10px;
+  left: -35px;
+}
+
+.ray7 {
+  height: 180px;
+  width: 10px;
+  transform: rotate(70deg);
+  top: -80px;
+  left: -35px;
+}
+
+.ray8 {
+  height: 80px;
+  width: 25px;
+  transform: rotate(100deg);
+  top: -50px;
+  left: -65px;
+}
+
+.ray9 {
+  height: 40px;
+  width: 16px;
+  transform: rotate(150deg);
+  top: -50px;
+  left: -28px;
+}
+
+@keyframes ray_anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .SpinnerMarsOrbit {
+    width: 20vh;
+    height: 20vh;
+  }
+
+  .SpinnerRayBox {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .SpinnerMarsOrbit {
+    display: none;
+  }
+
+  .RedLeader {
+    display: none;
+  }
+
+  .RedFive {
+    display: none;
+  }
+}
+
+.RedLeader {
+  position: absolute;
+  top: 50vh;
+  -webkit-animation: crossLeader 18s linear infinite;
+  animation: crossLeader 18s linear infinite;
+}
+
+.RedFive {
+  position: absolute;
+  top: calc(50vh + 15px);
+  -webkit-animation: crossFive 18s linear infinite;
+  animation: crossFive 18s linear infinite;
+}
+
+@keyframes crossLeader {
+  from {
+    left: -100vw;
+  }
+  to {
+    left: 200vw;
+  }
+}
+
+@keyframes crossFive {
+  from {
+    left: -106vw;
+  }
+  to {
+    left: 194vw;
+  }
+}

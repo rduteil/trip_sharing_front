@@ -1,0 +1,170 @@
+.XWingFighter {
+  position: relative;
+  top: 25px;
+  left: 25px;
+}
+
+.XWingFighter > * {
+  position: absolute;
+  background-color: #000000;
+}
+
+.XWingBarrel {
+  top: 20px;
+  left: 1px;
+  width: 2px;
+  height: 20px;
+}
+
+.XWingGuard {
+  top: 24px;
+  left: 0;
+  width: 4px;
+  height: 2px;
+}
+
+.XWingMagasine {
+  top: 39px;
+  left: 0;
+  width: 4px;
+  height: 10px;
+}
+
+.XWingWing {
+  top: 42px;
+  left: 3px;
+  width: 18px;
+  height: 6px;
+}
+
+.XWingBackWing {
+  top: 48px;
+  left: 3px;
+  background-color: #00000000 !important;
+  border-left: 16px solid #00000000;
+  border-right: 2px solid #00000000;
+  border-top: 4px solid #000000;
+}
+
+.XWingMotor {
+  top: 40px;
+  left: 21px;
+  width: 6px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.XWingExhaust {
+  top: 52px;
+  left: 22px;
+  width: 3px;
+  height: 7px;
+}
+
+.XWingRear {
+  top: 35px;
+  left: 27px;
+  width: 12px;
+  height: 19px;
+  border-radius: 4px;
+}
+
+.XWingNoseBorder {
+  top: 15px;
+  left: 29px;
+  background-color: #00000000 !important;
+  border-left: 1px solid #00000000;
+  border-bottom: 30px solid #000000;
+}
+
+.XWingNose {
+  top: 15px;
+  left: 30px;
+  height: 30px;
+  width: 6px;
+}
+
+.XWingNoseBorderBis {
+  top: 15px;
+  left: 36px;
+  background-color: #00000000 !important;
+  border-right: 1px solid #00000000;
+  border-bottom: 30px solid #000000;
+}
+
+.XWingTipBorder {
+  top: 0;
+  left: 30px;
+  background-color: #00000000 !important;
+  border-top: 15px solid #00000000;
+  border-right: 1px solid #000000;
+  border-bottom: 4px solid #00000000;
+}
+
+.XWingTip {
+  top: 0;
+  left: 31px;
+  width: 4px;
+  height: 15px;
+}
+
+.XWingTipBorderBis {
+  top: 0;
+  left: 35px;
+  background-color: #00000000 !important;
+  border-top: 15px solid #00000000;
+  border-left: 1px solid #000000;
+  border-bottom: 4px solid #00000000;
+}
+
+.XWingMotorBis {
+  top: 40px;
+  left: 39px;
+  width: 6px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.XWingExhaustBis {
+  top: 52px;
+  left: 41px;
+  width: 3px;
+  height: 7px;
+}
+
+.XWingWingBis {
+  top: 42px;
+  left: 45px;
+  width: 18px;
+  height: 6px;
+}
+
+.XWingBackWingBis {
+  top: 48px;
+  left: 45px;
+  background-color: #00000000 !important;
+  border-right: 16px solid #00000000;
+  border-left: 2px solid #00000000;
+  border-top: 4px solid #000000;
+}
+
+.XWingBarrelBis {
+  top: 20px;
+  left: 64px;
+  width: 2px;
+  height: 20px;
+}
+
+.XWingGuardBis {
+  top: 24px;
+  left: 63px;
+  width: 4px;
+  height: 2px;
+}
+
+.XWingMagasineBis {
+  top: 40px;
+  left: 63px;
+  width: 3px;
+  height: 10px;
+}

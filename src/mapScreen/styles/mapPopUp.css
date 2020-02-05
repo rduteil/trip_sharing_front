@@ -1,0 +1,17 @@
+.MapPopUpButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+.MapPopUpButton {
+  margin-left: 10px;
+  padding: 0 10px;
+  transition: 0.2s all linear;
+}
+
+.MapPopUpButton:hover {
+  cursor: pointer;
+  color: #000000;
+}

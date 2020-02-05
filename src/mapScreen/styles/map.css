@@ -1,0 +1,12 @@
+.MapWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MapWrapper-2 {
+  position: relative;
+  width: calc(100% - 4px);
+  max-height: 90%;
+}

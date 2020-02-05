@@ -1,0 +1,59 @@
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  border-radius: 2px;
+  transition: all 0.2s linear;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  overflow-y: scroll;
+  height: 101%;
+}
+
+.App {
+  position: fixed;
+  width: calc(100% - 4px);
+  left: 0;
+  overflow: hidden;
+  margin: 2px;
+}
+
+@media screen {
+  * {
+    font-size: medium;
+    line-height: 25px;
+  }
+
+  .App {
+    height: calc(100% - 48px);
+    top: 46px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  * {
+    font-size: small;
+    line-height: 20px;
+  }
+
+  .App {
+    height: calc(100% - 42px);
+    top: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  * {
+    font-size: x-small;
+    line-height: 15px;
+  }
+
+  .App {
+    height: calc(100% - 36px);
+    top: 34px;
+  }
+}

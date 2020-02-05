@@ -1,0 +1,15 @@
+.ThumbnailWrapper {
+  border: 2px solid #000000;
+  cursor: pointer;
+  display: flex;
+  opacity: 0.5;
+}
+
+.ThumbnailWrapper:hover {
+  opacity: 1;
+}
+
+.ThumbnailWrapper img {
+  width: 100%;
+  border-radius: 0;
+}

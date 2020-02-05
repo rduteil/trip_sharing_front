@@ -1,0 +1,133 @@
+.MapOverlayWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 14px;
+  transform: translateX(-50%);
+}
+
+.MapOverlayLine {
+  display: flex;
+  flex-direction: line;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.MapOverlayName {
+  border: 2px solid #000000;
+  padding: 5px 10px 5px 10px;
+  display: flex;
+  flex-grow: 1;
+  color: #ffffff;
+  background-color: #00000077;
+  text-align: center;
+  cursor: text;
+  margin: 0 5px;
+}
+
+.MapOverlayIcon {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000000;
+  background-color: #00000077;
+  padding: 2px;
+}
+
+.MapOverlayIcon img {
+  position: absolute;
+  align-self: center;
+  user-select: none;
+}
+
+.MapOverlayTriangle {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 5px solid #000000;
+}
+
+.MapOverlayCircle {
+  background-color: #000000;
+  width: 20px;
+  height: 2px;
+  border-radius: 50% / 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.MapOverlayArc div {
+  position: absolute;
+}
+
+@media screen and (min-width: 901px) {
+  .MapOverlayArc {
+    background-color: #000000;
+    width: 172px;
+    height: 22px;
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .MapOverlayArc1 {
+    bottom: 52px;
+    left: 18px;
+  }
+
+  .MapOverlayArc2 {
+    bottom: 72px;
+    left: 58px;
+  }
+
+  .MapOverlayArc3 {
+    bottom: 78px;
+    left: 102px;
+  }
+
+  .MapOverlayArc4 {
+    bottom: 78px;
+    right: 102px;
+  }
+
+  .MapOverlayArc5 {
+    bottom: 72px;
+    right: 58px;
+  }
+
+  .MapOverlayArc6 {
+    bottom: 52px;
+    right: 18px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .MapOverlayArc div {
+    bottom: 42px;
+  }
+  .MapOverlayArc1 {
+    left: 10px;
+  }
+
+  .MapOverlayArc2 {
+    left: 47px;
+  }
+
+  .MapOverlayArc3 {
+    left: 84px;
+  }
+
+  .MapOverlayArc4 {
+    right: 84px;
+  }
+
+  .MapOverlayArc5 {
+    right: 47px;
+  }
+
+  .MapOverlayArc6 {
+    right: 10px;
+  }
+}

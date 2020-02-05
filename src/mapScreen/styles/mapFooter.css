@@ -1,0 +1,46 @@
+.MapFooter {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  background-color: #00000077;
+  border: 2px solid #000000;
+}
+
+.MapFooterElement {
+  padding: 5px;
+  user-select: none;
+  color: #ffffff;
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.MapFooterMiddle {
+  justify-content: center;
+  text-align: center;
+}
+
+.MapFooterButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.MapFooterButton:hover {
+  color: #000000;
+}
+
+.MapFooterButton img {
+  position: absolute;
+  right: 0;
+}
+
+.MapFooterRight {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

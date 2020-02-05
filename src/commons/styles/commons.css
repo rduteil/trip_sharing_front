@@ -1,0 +1,199 @@
+.AbsolutePanel {
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.CaptionBox {
+  padding: 2px;
+  border: 2px solid #000000;
+  background-color: #00000077;
+  color: #ffffff;
+  user-select: none;
+  text-align: center;
+}
+
+.ErrorBox {
+  padding: 4px;
+  border: 2px solid #bb5555;
+  background-color: #ffffff;
+  color: #bb0000;
+  user-select: none;
+  text-align: center;
+}
+
+.MessageBox {
+  padding: 4px;
+  border: 2px solid #5555bb;
+  background-color: #ffffff;
+  color: #0000bb;
+  user-select: none;
+  text-align: center;
+}
+
+.Clickable:hover {
+  cursor: pointer;
+  color: #000000;
+}
+
+.FlexForm {
+  padding: 4px;
+  background-color: #00000022;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.FlexForm > * {
+  margin: 2px 0 2px 0;
+}
+
+.FlexForm > *:first-child {
+  margin: 0 0 2px 0 !important;
+}
+
+.FlexForm > *:last-child {
+  margin: 2px 0 0 0 !important;
+}
+
+.FlexMarginlessColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.FlexColumn > * {
+  margin: 2px 0 2px 0;
+}
+
+.FlexColumn > *:first-child {
+  margin: 0 0 2px 0 !important;
+}
+
+.FlexColumn > *:last-child {
+  margin: 2px 0 0 0 !important;
+}
+
+.FlexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.FlexRow > * {
+  margin: 0 2px 0 2px;
+}
+
+.FlexRow > *:first-child {
+  margin: 0 2px 0 0 !important;
+}
+
+.FlexRow > *:last-child {
+  margin: 0 0 0 2px !important;
+}
+
+.FlexInput {
+  padding: 2px 4px;
+  border: 2px solid #000000;
+  background-color: #ffffffcc;
+}
+
+.FlexPassword {
+  padding: 2px 4px;
+  border: 2px solid #000000;
+  background-color: #ffffffcc;
+}
+
+.FlexTabs {
+  display: flex;
+  margin-top: 20px;
+}
+
+.FlexTabActive {
+  padding: 4px;
+  width: 100%;
+  background-color: #00000022;
+  user-select: none;
+  text-align: center;
+  color: #ffffff;
+}
+
+.FlexTab {
+  padding: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.FlexTab:hover {
+  background-color: #00000044;
+}
+
+@media screen {
+  .FlexInput {
+    width: 400px;
+  }
+
+  .FlexPassword {
+    width: 363px;
+  }
+
+  .FlexTabs {
+    width: 408px;
+  }
+
+  .FlexButton {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .FlexInput {
+    width: 250px;
+  }
+
+  .FlexPassword {
+    width: 218px;
+  }
+
+  .FlexTabs {
+    width: 258px;
+  }
+
+  .FlexButton {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .FlexInput {
+    width: 150px;
+  }
+
+  .FlexPassword {
+    width: 123px;
+  }
+
+  .FlexTabs {
+    width: 158px;
+  }
+
+  .FlexButton {
+    width: 150px;
+  }
+}

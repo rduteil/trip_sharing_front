@@ -1,0 +1,77 @@
+.IconWrapper {
+  border: 2px solid #000000;
+  background-color: #00000077;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.IconWrapper img {
+  position: absolute;
+  user-select: none;
+}
+
+.IconWrapperDisabled {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000000;
+  background-color: #ffffff99;
+  padding: 2px;
+  cursor: default;
+}
+
+.IconWrapperDisabled img {
+  display: none;
+}
+
+@media screen and (min-width: 901px) {
+  .IconWrapper {
+    width: 33px;
+    height: 33px;
+  }
+
+  .IconWrapperDisabled {
+    width: 33px;
+    height: 33px;
+  }
+
+  .IconWrapper img {
+    width: 33px;
+    height: 33px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .IconWrapper {
+    width: 28px;
+    height: 28px;
+  }
+
+  .IconWrapperDisabled {
+    width: 28px;
+    height: 28px;
+  }
+
+  .IconWrapper img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .IconWrapper {
+    width: 23px;
+    height: 23px;
+  }
+
+  .IconWrapperDisabled {
+    width: 23px;
+    height: 23px;
+  }
+
+  .IconWrapper img {
+    width: 23px;
+    height: 23px;
+  }
+}

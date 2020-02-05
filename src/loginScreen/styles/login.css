@@ -1,0 +1,27 @@
+.LoginCaption {
+  color: #ffffff;
+  padding: 4px;
+  text-decoration: underline;
+}
+
+.LoginButton * {
+  width: 50%;
+}
+
+@media screen {
+  .LoginButton {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .LoginButton {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .LoginButton {
+    width: 150px;
+  }
+}
