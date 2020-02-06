@@ -2,7 +2,13 @@ import { TestScheduler } from "rxjs/testing";
 import { ActionsObservable } from "redux-observable";
 import { throwError, of } from "rxjs";
 
-import { LoginActions, loginPending, registerPending, getResetPending, loginEpic } from "../actions/login";
+import {
+  LoginActions,
+  loginPending,
+  registerPending,
+  getResetPending,
+  loginEpic
+} from "../actions/login";
 import { ToastActions } from "../../commons/actions/toast";
 import { ENG } from "../../helpers/strings";
 import { Times } from "../../helpers/enums";

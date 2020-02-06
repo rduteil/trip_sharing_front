@@ -28,6 +28,7 @@ const epics = combineEpics(
   updateUserEpic,
   changePasswordEpic
 );
+
 const epicMiddleware = createEpicMiddleware({
   dependencies: { ajax: ajax }
 });
