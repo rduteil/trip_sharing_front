@@ -1,14 +1,8 @@
 import { TestScheduler } from "rxjs/testing";
 import { ActionsObservable } from "redux-observable";
-import { from } from "rxjs";
+import { throwError, of } from "rxjs";
 
-import {
-  LoginActions,
-  loginPending,
-  registerPending,
-  getResetPending,
-  loginEpic
-} from "../actions/login";
+import { LoginActions, loginPending, registerPending, getResetPending, loginEpic } from "../actions/login";
 import { ToastActions } from "../../commons/actions/toast";
 import { ENG } from "../../helpers/strings";
 import { Times } from "../../helpers/enums";
@@ -41,9 +35,7 @@ describe("actions creators", () => {
       verifyPassword,
       language
     };
-    expect(registerPending(mail, password, verifyPassword, language)).toEqual(
-      expectedAction
-    );
+    expect(registerPending(mail, password, verifyPassword, language)).toEqual(expectedAction);
   });
 
   it("create a get reset action", () => {
@@ -63,7 +55,7 @@ const testScheduler = new TestScheduler((actual, expected) => {
   expect(actual).toEqual(expected);
 });
 
-describe("login epic middleware", () => {
+describe("login epic", () => {
   const Inputs = {
     EMPTY_MAIL: "",
     INVALID_MAIL: "mail",
@@ -87,12 +79,12 @@ describe("login epic middleware", () => {
 
       let output$ = loginEpic(action$, undefined, { ajax: () => ({}) });
 
-      expectObservable(output$).toBe("(ab)", {
-        a: {
+      expectObservable(output$).toBe("(xy)", {
+        x: {
           type: LoginActions.LOGIN_FAILURE,
           code: -5
         },
-        b: {
+        y: {
           type: ToastActions.SHOW,
           message: ENG.errors.emptyCredentials,
           error: true,
@@ -117,12 +109,12 @@ describe("login epic middleware", () => {
 
       let output$ = loginEpic(action$, undefined, { ajax: () => ({}) });
 
-      expectObservable(output$).toBe("(ab)", {
-        a: {
+      expectObservable(output$).toBe("(xy)", {
+        x: {
           type: LoginActions.LOGIN_FAILURE,
           code: -11
         },
-        b: {
+        y: {
           type: ToastActions.SHOW,
           message: ENG.errors.improperMail,
           error: true,
@@ -132,8 +124,8 @@ describe("login epic middleware", () => {
     });
   });
 
-  /*it("wrong credentials", () => {
-    testScheduler.run(({ hot, cold, expectObservable }) => {
+  it("wrong credentials", () => {
+    testScheduler.run(({ hot, expectObservable }) => {
       let action$ = new ActionsObservable(
         hot("a", {
           a: {
@@ -146,35 +138,18 @@ describe("login epic middleware", () => {
       );
 
       let dependencies = {
-        getFingerprint: () =>
-          from(
-            new Promise(resolve => {
-              let murmur = "fingerprint";
-              resolve(murmur);
-            })
-          ),
-
-        ajax: () =>
-          from(
-            new Promise(resolve => {
-              let response = {
-                response: {
-                  code: -3
-                }
-              };
-              resolve(response);
-            })
-          )
+        getFingerprint: () => of("fingerprint"),
+        ajax: () => of({ response: { code: -3 } })
       };
 
       let output$ = loginEpic(action$, undefined, dependencies);
 
-      expectObservable(output$).toBe("(ab)", {
-        a: {
+      expectObservable(output$).toBe("(xy)", {
+        x: {
           type: LoginActions.LOGIN_FAILURE,
           code: -3
         },
-        b: {
+        y: {
           type: ToastActions.SHOW,
           message: ENG.errors.wrongCredentials,
           error: true,
@@ -182,5 +157,75 @@ describe("login epic middleware", () => {
         }
       });
     });
-  });*/
+  });
+
+  it("server failure", () => {
+    testScheduler.run(({ hot, expectObservable }) => {
+      let action$ = new ActionsObservable(
+        hot("a", {
+          a: {
+            type: LoginActions.LOGIN_PENDING,
+            mail: Inputs.PROPER_MAIL,
+            password: Inputs.PASSWORD,
+            language: Inputs.LANGUAGE
+          }
+        })
+      );
+
+      let dependencies = {
+        getFingerprint: () => of("fingerprint"),
+        ajax: () => throwError(new Error("Server failure"))
+      };
+
+      let output$ = loginEpic(action$, undefined, dependencies);
+
+      expectObservable(output$).toBe("(xy)", {
+        x: {
+          type: LoginActions.LOGIN_FAILURE,
+          code: -2
+        },
+        y: {
+          type: ToastActions.SHOW,
+          message: ENG.errors.serverFailure,
+          error: true,
+          time: Times.NORMAL
+        }
+      });
+    });
+  });
+
+  it("login success", () => {
+    testScheduler.run(({ hot, expectObservable }) => {
+      let action$ = new ActionsObservable(
+        hot("a", {
+          a: {
+            type: LoginActions.LOGIN_PENDING,
+            mail: Inputs.PROPER_MAIL,
+            password: Inputs.PASSWORD,
+            language: Inputs.LANGUAGE
+          }
+        })
+      );
+
+      let dependencies = {
+        getFingerprint: () => of("fingerprint"),
+        ajax: () => of({ response: { code: 0 } })
+      };
+
+      let output$ = loginEpic(action$, null, dependencies);
+
+      expectObservable(output$).toBe("(xy)", {
+        x: {
+          type: LoginActions.LOGIN_SUCCESS
+        },
+        y: {
+          type: "@@router/CALL_HISTORY_METHOD",
+          payload: {
+            args: ["/"],
+            method: "push"
+          }
+        }
+      });
+    });
+  });
 });

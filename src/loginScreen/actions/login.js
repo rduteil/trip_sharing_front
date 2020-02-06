@@ -102,7 +102,7 @@ const getFingerprint = () => {
   });
 };
 
-export const loginEpic = (action$, store$, { ajax }) => {
+export const loginEpic = (action$, store$, { getFingerprint, ajax }) => {
   return action$.ofType(LoginActions.LOGIN_PENDING).pipe(
     mergeMap(action => {
       if (action.mail.length === 0 || action.password.length === 0) {

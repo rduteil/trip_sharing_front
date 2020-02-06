@@ -14,11 +14,7 @@ import RootReducer from "./rootScreen/reducers/root";
 import MapReducer from "./mapScreen/reducers/map";
 import ToastReducer from "./commons/reducers/toast";
 
-import {
-  loginEpic,
-  registerEpic,
-  getResetEpic
-} from "./loginScreen/actions/login";
+import { loginEpic, registerEpic, getResetEpic } from "./loginScreen/actions/login";
 import { validateEpic } from "./validateScreen/actions/validate";
 import { setResetEpic } from "./resetScreen/actions/reset";
 import { updateUserEpic, changePasswordEpic } from "./userScreen/actions/user";
