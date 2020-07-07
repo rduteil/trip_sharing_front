@@ -1,0 +1,25 @@
+image: node:latest
+
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - build
+  - test
+
+build_app:
+  stage: build
+  script:
+    - npm install
+    - npm build
+  tags:
+    - docker
+
+test_app:
+  stage: test
+  script:
+    - npm install
+    - npm test
+  tags:
+    - docker

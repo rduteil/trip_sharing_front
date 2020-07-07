@@ -19,6 +19,8 @@ import { validateEpic } from "./validateScreen/actions/validate";
 import { setResetEpic } from "./resetScreen/actions/reset";
 import { updateUserEpic, changePasswordEpic } from "./userScreen/actions/user";
 
+import { getFingerprint } from "./loginScreen/actions/login";
+
 const epics = combineEpics(
   loginEpic,
   registerEpic,
@@ -30,7 +32,7 @@ const epics = combineEpics(
 );
 
 const epicMiddleware = createEpicMiddleware({
-  dependencies: { ajax: ajax }
+  dependencies: { getFingerprint: getFingerprint, ajax: ajax }
 });
 
 const createRouterReducer = history =>

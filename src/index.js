@@ -42,11 +42,7 @@ render(
       <Router history={history}>
         <Switch>
           <Route exact path="/login" component={LoginContainer} />
-          <Route
-            exact
-            path="/validate/:type/:token"
-            component={ValidateContainer}
-          />
+          <Route exact path="/validate/:type/:token" component={ValidateContainer} />
           <Route exact path="/reset/:cipher" component={ResetContainer} />
           <Route exact path="/user" component={UserContainer} />
           <Route exact path="/map" component={MapContainer} />
