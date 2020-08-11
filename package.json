@@ -3,7 +3,7 @@
   "version": "0.0.1937",
   "description": null,
   "keywords": [],
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "connected-react-router": "6.6.1",
     "enzyme": "3.11.0",
@@ -25,10 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest -u",
     "eject": "react-scripts eject"
-  },
-  "jest": {
-    "setupFiles": ["./src/setupTests.js"]
   }
 }
