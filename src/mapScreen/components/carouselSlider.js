@@ -10,14 +10,14 @@ const CarouselSlider = ({ photos, captions, currentPhoto, onUpdatePhoto }) => (
         <div
           key={i}
           className={"SlideWrapper"}
-          style={{ opacity: i === currentPhoto ? 1 : 0 }}
-        >
+          style={{ opacity: i === currentPhoto ? 1 : 0, zIndex: i === currentPhoto ? 10 : -1 }}>
           <img src={photo} alt="Unable to load" />
           <div className="SlideCaption">
             <input
               className="CaptionBox"
               type="text"
               value={captions[i]}
+              placeholder={"Add a quick description..."}
               onChange={event => onUpdatePhoto(event.target.value)}
             />
           </div>

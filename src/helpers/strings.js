@@ -28,34 +28,27 @@ export const ENG = {
     default: "An unknown and unexpected error occured",
     uniqueMail: "This mail is already in use, please try another one",
     serverFailure: "Sorry, our server failed us, please try again later",
-    wrongCredentials:
-      "Something is wrong with your credentials, please try again",
+    wrongCredentials: "Something is wrong with your credentials, please try again",
     tooManyAttempts: "You made too many attempts, please retry in",
     emptyCredentials: "Please enter a mail address and a password",
     differentPasswords: "Your two passwords are different, please try again",
-    mailError:
-      "Unable to send a verification mail to your address, please check it and try again",
+    mailError: "Unable to send a verification mail to your address, please check it and try again",
     wrongToken: "Unauthorized access, your session might have expired",
     alreadyVerified: "This verification has already been done",
     notVerified: "Please verify your account beforehand",
     improperMail: "Please enter a valid mail address",
-    unknownConnection:
-      "Login attempt from an unkwnown source, please check your mails to allow it",
+    unknownConnection: "Login attempt from an unkwnown source, please check your mails to allow it",
     untrustedConnection:
       "Login attempt from an untrusted source, please check your mails to allow it",
-    tooShortPassword:
-      "Your password is too short, please use at least 8 characters"
+    tooShortPassword: "Your password is too short, please use at least 8 characters"
   },
   messages: {
-    registerSuccess:
-      "Your account has been registered, please check your mails to verify it",
+    registerSuccess: "Your account has been registered, please check your mails to verify it",
     verifySuccess: "Your mail address has been verified, you can now use it",
-    allowSuccess:
-      "This connection has been successfully added to your whitelist",
+    allowSuccess: "This connection has been successfully added to your whitelist",
     updateUserSuccess: "Your personal data have been updated",
     changePasswordSuccess: "Your password has been updated",
-    resetSuccess:
-      "A link to reset your password has been sent, please check your mails"
+    resetSuccess: "A link to reset your password has been sent, please check your mails"
   },
   captions: {
     changePassword: "Change password: ",
@@ -78,8 +71,8 @@ export const FRA = {
     verifyNewPassword: "Confirmation du nouveau mot de passe..."
   },
   buttons: {
-    loginForm: "Formulaire de connexion",
-    registrationForm: "Formulaire d'inscription",
+    loginForm: "Connexion",
+    registrationForm: "Inscription",
     updateUserForm: "Données personnelles",
     changePasswordForm: "Mot de passe",
     login: "Connexion",
@@ -89,38 +82,29 @@ export const FRA = {
   },
   errors: {
     default: "Une erreur inconnue et inattendue est survenue",
-    uniqueMail:
-      "Cette adresse mail est déjà utilisée, veuillez en essayer une autre",
+    uniqueMail: "Cette adresse mail est déjà utilisée, veuillez en essayer une autre",
     serverFailure: "Le serveur ne répond pas, veuillez réeassyer plus tard",
-    wrongCredentials:
-      "Impossible de se connecter avec ces informations, veuillez réessayer",
+    wrongCredentials: "Impossible de se connecter avec ces informations, veuillez réessayer",
     tooManyAttempts: "Trop de tentatives de connexion, veuillez réessayer dans",
-    emptyCredentials:
-      "Veuillez tout d'abord fournir une adresse mail et un mot de passe",
-    differentPasswords:
-      "Les deux mots de passe sont différents, veuillez réessayer",
+    emptyCredentials: "Veuillez tout d'abord fournir une adresse mail et un mot de passe",
+    differentPasswords: "Les deux mots de passe sont différents, veuillez réessayer",
     mailError:
       "Impossible d'envoyer le mail de confirmation à votre adresse, veuillez vérifier et réessayer",
     wrongToken: "Accès non autorisé, votre session a peut être expiré",
     alreadyVerified: "Cette vérification a déjà été réalisée",
     notVerified: "Veuillez d'abord vérifier votre adresse mail",
     improperMail: "Veuillez entrer une adresse mail valide",
-    unknownConnection:
-      "Tentative de connexion suspecte, veuillez vérifier vos mails",
-    untrustedConnection:
-      "Tentative de connexion non autorisée, veuillez vérifier vos mails",
+    unknownConnection: "Tentative de connexion suspecte, veuillez vérifier vos mails",
+    untrustedConnection: "Tentative de connexion non autorisée, veuillez vérifier vos mails",
     tooShortPassword: "Votre mot de passe doit faire un minimum de 8 caractères"
   },
   messages: {
-    registerSuccess:
-      "Votre compte a été créé. Un mail de validation a été envoyé",
-    verifySuccess:
-      "Votre compté a été vérifié, vous pouvez désormais l'utiliser",
+    registerSuccess: "Votre compte a été créé. Un mail de validation a été envoyé",
+    verifySuccess: "Votre compté a été vérifié, vous pouvez désormais l'utiliser",
     allowSuccess: "Cette connexion a été ajoutée à la liste autorisée",
     updateUserSuccess: "Vos données peersonnelles ont été changées",
     changePasswordSuccess: "Votre mot de passe a été changé",
-    resetSuccess:
-      "Un lien permettant de changer de mot de passe vous a été envoyé par mail"
+    resetSuccess: "Un lien permettant de changer de mot de passe vous a été envoyé par mail"
   },
   captions: {
     changePassword: "Changer de mot de passe : ",
@@ -249,5 +233,18 @@ export const codeToString = (error, time, language) => {
     default: {
       return language.errors.default;
     }
+  }
+};
+
+export const Connection = {
+  BASE_URL: "https://l8zby.sse.codesandbox.io/",
+  AUDIENCE: "compassionate-volhard-l8zby",
+  SENDER: "happy-frog-vg06i",
+  ENDPOINTS: {
+    LOGIN: "login/",
+    REGISTER: "register/",
+    RESET_GET: "reset/get/",
+    VERIFY: "verify/",
+    ALLOW: "allow/"
   }
 };

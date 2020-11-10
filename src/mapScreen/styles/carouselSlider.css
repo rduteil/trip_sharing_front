@@ -32,4 +32,5 @@
 .SlideCaption {
   position: absolute;
   bottom: 5px;
+  width: 90%;
 }

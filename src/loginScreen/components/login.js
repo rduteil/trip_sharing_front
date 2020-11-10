@@ -30,11 +30,7 @@ class Login extends React.Component {
     } else if (event.key === "Enter") {
       switch (this.state.tab) {
         case 0: {
-          this.props.onLogin(
-            this.state.mail,
-            this.state.password,
-            this.props.language
-          );
+          this.props.onLogin(this.state.mail, this.state.password, this.props.language);
           return;
         }
         case 1: {
@@ -67,27 +63,21 @@ class Login extends React.Component {
         <div className="FlexMarginlessColumn">
           <div className="FlexTabs">
             <div
-              className={`FlexTab${
-                this.state.tab === 0 ? "Active" : " Clickable"
-              }`}
+              className={`FlexTab${this.state.tab === 0 ? "Active" : " Clickable"}`}
               onClick={() => {
                 this.setState({
                   tab: 0
                 });
-              }}
-            >
+              }}>
               {this.props.language.buttons.loginForm}
             </div>
             <div
-              className={`FlexTab${
-                this.state.tab === 1 ? "Active" : " Clickable"
-              }`}
+              className={`FlexTab${this.state.tab === 1 ? "Active" : " Clickable"}`}
               onClick={() => {
                 this.setState({
                   tab: 1
                 });
-              }}
-            >
+              }}>
               {this.props.language.buttons.registrationForm}
             </div>
           </div>
@@ -123,38 +113,28 @@ class Login extends React.Component {
             </div>
             <div
               className="LoginButton FlexRow"
-              style={{ display: this.state.tab === 0 ? "" : "none" }}
-            >
+              style={{ display: this.state.tab === 0 ? "" : "none" }}>
               <div
                 className="LoginCaption Clickable"
                 onClick={() => {
                   if (!isPending) {
                     this.props.onGetReset(this.state.mail, this.props.language);
                   }
-                }}
-              >
+                }}>
                 {this.props.language.buttons.forgotPassword}
               </div>
               <div
                 className="CaptionBox Clickable"
                 onClick={() => {
                   if (!isPending) {
-                    this.props.onLogin(
-                      this.state.mail,
-                      this.state.password,
-                      this.props.language
-                    );
+                    this.props.onLogin(this.state.mail, this.state.password, this.props.language);
                   }
-                }}
-              >
+                }}>
                 {this.props.language.buttons.login}
               </div>
             </div>
 
-            <div
-              className="FlexRow"
-              style={{ display: this.state.tab === 1 ? "" : "none" }}
-            >
+            <div className="FlexRow" style={{ display: this.state.tab === 1 ? "" : "none" }}>
               <input
                 type="password"
                 placeholder={this.props.language.placeholders.verifyPassword}
@@ -184,8 +164,7 @@ class Login extends React.Component {
                     this.props.language
                   );
                 }
-              }}
-            >
+              }}>
               {this.props.language.buttons.register}
             </div>
           </div>

@@ -1,12 +1,10 @@
 import { push } from "connected-react-router";
 import fingerprint from "fingerprintjs2";
-
 import { mergeMap, catchError } from "rxjs/operators";
-import { ajax } from "rxjs/ajax";
 import { from } from "rxjs";
 
 import { show } from "../../commons/actions/toast";
-import { codeToString } from "../../helpers/strings";
+import { codeToString, Connection } from "../../helpers/strings";
 import { Times } from "../../helpers/enums";
 
 export const LoginActions = {
@@ -92,7 +90,7 @@ const excludes = {
 };
 
 // Return an always resolved promise containing the device's fingerprint
-const getFingerprint = () => {
+export const getFingerprint = () => {
   return new Promise(resolve => {
     fingerprint.get({ excludes: excludes }, components => {
       let values = components.map(component => component.value);
@@ -113,23 +111,19 @@ export const loginEpic = (action$, store$, { getFingerprint, ajax }) => {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(action.mail)) {
         return [
           loginFailure(-11),
-          show(
-            codeToString(-11, undefined, action.language),
-            true,
-            Times.NORMAL
-          )
+          show(codeToString(-11, undefined, action.language), true, Times.NORMAL)
         ];
       } else {
         return from(getFingerprint()).pipe(
           mergeMap(murmur => {
             return ajax({
-              url: "https://44c0v.sse.codesandbox.io/login",
+              url: Connection.BASE_URL + Connection.ENDPOINTS.LOGIN,
               method: "post",
               headers: { "Content-Type": "application/json" },
               body: {
                 mail: action.mail,
                 password: action.password,
-                audience: "forked-jiz13",
+                audience: Connection.AUDIENCE,
                 fingerprint: murmur
               }
             }).pipe(
@@ -138,11 +132,7 @@ export const loginEpic = (action$, store$, { getFingerprint, ajax }) => {
                   return [
                     loginFailure(response.response.code),
                     show(
-                      codeToString(
-                        response.response.code,
-                        response.response.time,
-                        action.language
-                      ),
+                      codeToString(response.response.code, response.response.time, action.language),
                       true,
                       Times.NORMAL
                     )
@@ -152,14 +142,10 @@ export const loginEpic = (action$, store$, { getFingerprint, ajax }) => {
                   return [loginSuccess(), push("/")];
                 }
               }),
-              catchError(() => {
+              catchError(exception => {
                 return [
                   loginFailure(-2),
-                  show(
-                    codeToString(-2, undefined, action.language),
-                    true,
-                    Times.NORMAL
-                  )
+                  show(codeToString(-2, undefined, action.language), true, Times.NORMAL)
                 ];
               })
             );
@@ -170,7 +156,7 @@ export const loginEpic = (action$, store$, { getFingerprint, ajax }) => {
   );
 };
 
-export const registerEpic = action$ => {
+export const registerEpic = (action$, store$, { getFingerprint, ajax }) => {
   return action$.ofType(LoginActions.REGISTER_PENDING).pipe(
     mergeMap(action => {
       if (action.mail.length === 0 || action.password.length === 0) {
@@ -197,13 +183,13 @@ export const registerEpic = action$ => {
         return from(getFingerprint()).pipe(
           mergeMap(murmur => {
             return ajax({
-              url: "https://44c0v.sse.codesandbox.io/register",
+              url: Connection.BASE_URL + Connection.ENDPOINTS.REGISTER,
               method: "post",
               headers: { "Content-Type": "application/json" },
               body: {
                 mail: action.mail,
                 password: action.password,
-                audience: "forked-jiz13",
+                audience: Connection.SENDER,
                 fingerprint: murmur
               }
             }).pipe(
@@ -211,9 +197,8 @@ export const registerEpic = action$ => {
                 if (response.response.code !== 0) {
                   return [
                     registerFailure(response.response.code),
-
                     show(
-                      codeToString(response.data.code, null, action.language),
+                      codeToString(response.response.code, null, action.language),
                       true,
                       Times.NORMAL
                     )
@@ -221,22 +206,14 @@ export const registerEpic = action$ => {
                 } else {
                   return [
                     registerSuccess(),
-                    show(
-                      action.language.messages.registerSuccess,
-                      false,
-                      Times.NORMAL
-                    )
+                    show(action.language.messages.registerSuccess, false, Times.NORMAL)
                   ];
                 }
               }),
               catchError(() => {
                 return [
                   getResetFailure(-2),
-                  show(
-                    codeToString(-2, undefined, action.language),
-                    true,
-                    Times.NORMAL
-                  )
+                  show(codeToString(-2, undefined, action.language), true, Times.NORMAL)
                 ];
               })
             );
@@ -247,38 +224,31 @@ export const registerEpic = action$ => {
   );
 };
 
-export const getResetEpic = action$ => {
+export const getResetEpic = (action$, store$, { ajax }) => {
   return action$.ofType(LoginActions.GET_RESET_PENDING).pipe(
     mergeMap(action => {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(action.mail)) {
         return [
           getResetFailure(-11),
-          show(
-            codeToString(-11, undefined, action.language),
-            true,
-            Times.NORMAL
-          )
+          show(codeToString(-11, undefined, action.language), true, Times.NORMAL)
         ];
       } else {
         return ajax({
+          url: Connection.BASE_URL + Connection.ENDPOINTS.RESET_GET,
           method: "post",
-          url: "https://44c0v.sse.codesandbox.io/reset/get",
           headers: { "Content-Type": "application/json" },
           body: {
             mail: action.mail,
-            audience: "forked-jiz13"
-          }
+            audience: Connection.SENDER
+          },
+          testCode: -3
         }).pipe(
           mergeMap(response => {
             if (response.response.code !== 0) {
               return [
                 getResetFailure(response.response.code),
                 show(
-                  codeToString(
-                    response.response.code,
-                    undefined,
-                    action.language
-                  ),
+                  codeToString(response.response.code, undefined, action.language),
                   true,
                   Times.NORMAL
                 )
@@ -293,11 +263,7 @@ export const getResetEpic = action$ => {
           catchError(() => {
             return [
               getResetFailure(-2),
-              show(
-                codeToString(-2, undefined, action.language),
-                true,
-                Times.NORMAL
-              )
+              show(codeToString(-2, undefined, action.language), true, Times.NORMAL)
             ];
           })
         );

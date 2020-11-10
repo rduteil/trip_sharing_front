@@ -38,12 +38,9 @@ class MapDrawer extends React.Component {
     return (
       <div
         className="MapDrawerIcon"
-        onClick={() =>
-          this.props.onToggleValue(Toggles.DRAWER, false, undefined)
-        }
+        onClick={() => this.props.onToggleValue(Toggles.DRAWER, false, undefined)}
         onMouseEnter={() => this.setFlag(0, true)}
-        onMouseLeave={() => this.setFlag(0, false)}
-      >
+        onMouseLeave={() => this.setFlag(0, false)}>
         <img
           src={SVG.closeDrawerWhite}
           style={{
@@ -67,19 +64,14 @@ class MapDrawer extends React.Component {
   navigateLine = () => {
     let previousAllowed = this.props.selectedStage > 1;
     let nextAllowed =
-      this.props.layer
-        .getSource()
-        .getFeatureById(this.props.selectedStage + 1) !== null;
+      this.props.layer.getSource().getFeatureById(this.props.selectedStage + 1) !== null;
     return (
       <div className="MapDrawerLine">
         <div
           className="MapDrawerIcon"
           onClick={() => {
             if (previousAllowed) {
-              this.props.onSelectStage(
-                this.props.selectedTrip,
-                this.props.selectedStage - 1
-              );
+              this.props.onSelectStage(this.props.selectedTrip, this.props.selectedStage - 1);
               this.setFlag(1, false);
             }
           }}
@@ -92,8 +84,7 @@ class MapDrawer extends React.Component {
             if (previousAllowed) {
               this.setFlag(1, false);
             }
-          }}
-        >
+          }}>
           <img
             src={SVG.previousWhite}
             style={{ opacity: this.state.hoverFlags[1] ? 0 : 1 }}
@@ -115,10 +106,7 @@ class MapDrawer extends React.Component {
           className="MapDrawerIcon"
           onClick={() => {
             if (nextAllowed) {
-              this.props.onSelectStage(
-                this.props.selectedTrip,
-                this.props.selectedStage + 1
-              );
+              this.props.onSelectStage(this.props.selectedTrip, this.props.selectedStage + 1);
               this.setFlag(2, false);
             }
           }}
@@ -131,8 +119,7 @@ class MapDrawer extends React.Component {
             if (nextAllowed) {
               this.setFlag(2, false);
             }
-          }}
-        >
+          }}>
           <img
             src={SVG.nextWhite}
             style={{ opacity: this.state.hoverFlags[2] ? 0 : 1 }}
@@ -146,107 +133,6 @@ class MapDrawer extends React.Component {
             }}
             alt="Next"
           />
-        </div>
-      </div>
-    );
-  };
-
-  createLine = () => {
-    if (
-      this.props.layer
-        .getSource()
-        .getFeatureById(this.props.selectedStage + 1) !== null
-    ) {
-      return null;
-    }
-
-    return (
-      <div
-        className="MapDrawerClickable"
-        onClick={() => this.props.onChangeMode(Modes.CREATE_STAGE)}
-        onMouseEnter={() => this.setFlag(3, true)}
-        onMouseLeave={() => this.setFlag(3, false)}
-      >
-        <div
-          className="MapDrawerIcon"
-          style={{
-            marginRight: "8px"
-          }}
-        >
-          <img
-            src={SVG.addWhite}
-            style={{
-              opacity: this.state.hoverFlags[3] ? 0 : 1
-            }}
-            alt="Close"
-          />
-          <img
-            src={SVG.addBlack}
-            style={{
-              opacity: this.state.hoverFlags[3] ? 1 : 0
-            }}
-            alt="Close"
-          />
-        </div>
-        <div
-          className="MapDrawerElement"
-          style={{ color: this.state.hoverFlags[3] ? "#000000" : "#ffffff" }}
-        >
-          Add a new stage
-        </div>
-      </div>
-    );
-  };
-
-  insightArea = () => {
-    return (
-      <textarea
-        className="MapDrawerInsight"
-        rows="4"
-        placeholder="Give us an insight !"
-        value={this.props.layer
-          .getSource()
-          .getFeatureById(this.props.selectedStage)
-          .get("insight")}
-        onChange={event => this.props.onDescribeStage(event.target.value)}
-      />
-    );
-  };
-
-  relocateLine = () => {
-    return (
-      <div
-        className="MapDrawerClickable"
-        onClick={() => this.props.onChangeMode(Modes.RELOCATE)}
-        onMouseEnter={() => this.setFlag(4, true)}
-        onMouseLeave={() => this.setFlag(4, false)}
-      >
-        <div
-          className="MapDrawerIcon"
-          style={{
-            marginRight: "8px"
-          }}
-        >
-          <img
-            src={SVG.markerWhite}
-            style={{
-              opacity: this.state.hoverFlags[4] ? 0 : 1
-            }}
-            alt="Close"
-          />
-          <img
-            src={SVG.markerBlack}
-            style={{
-              opacity: this.state.hoverFlags[4] ? 1 : 0
-            }}
-            alt="Close"
-          />
-        </div>
-        <div
-          className="MapDrawerElement"
-          style={{ color: this.state.hoverFlags[4] ? "#000000" : "#ffffff" }}
-        >
-          Relocate this stage
         </div>
       </div>
     );
@@ -279,8 +165,7 @@ class MapDrawer extends React.Component {
             onClick={() => {
               this.props.onTransportStage(TransportBlack[i]);
               this.setTransport(i, false);
-            }}
-          >
+            }}>
             <img
               src={TransportWhite[i]}
               alt={i}
@@ -308,6 +193,133 @@ class MapDrawer extends React.Component {
     );
   };
 
+  createLine = () => {
+    if (this.props.layer.getSource().getFeatureById(this.props.selectedStage + 1) !== null) {
+      return null;
+    }
+
+    return (
+      <div
+        className="MapDrawerClickable"
+        onClick={() => this.props.onChangeMode(Modes.CREATE_STAGE)}
+        onMouseEnter={() => this.setFlag(3, true)}
+        onMouseLeave={() => this.setFlag(3, false)}>
+        <div
+          className="MapDrawerIcon"
+          style={{
+            marginRight: "8px"
+          }}>
+          <img
+            src={SVG.addWhite}
+            style={{
+              opacity: this.state.hoverFlags[3] ? 0 : 1
+            }}
+            alt="Close"
+          />
+          <img
+            src={SVG.addBlack}
+            style={{
+              opacity: this.state.hoverFlags[3] ? 1 : 0
+            }}
+            alt="Close"
+          />
+        </div>
+        <div
+          className="MapDrawerElement"
+          style={{ color: this.state.hoverFlags[3] ? "#000000" : "#ffffff" }}>
+          Add a new stage
+        </div>
+      </div>
+    );
+  };
+
+  insightArea = () => {
+    return (
+      <textarea
+        className="MapDrawerInsight"
+        rows="4"
+        placeholder="Give us an insight !"
+        value={this.props.layer
+          .getSource()
+          .getFeatureById(this.props.selectedStage)
+          .get("insight")}
+        onChange={event => this.props.onDescribeStage(event.target.value)}
+      />
+    );
+  };
+
+  relocateLine = () => {
+    return (
+      <div
+        className="MapDrawerClickable"
+        onClick={() => this.props.onChangeMode(Modes.RELOCATE)}
+        onMouseEnter={() => this.setFlag(4, true)}
+        onMouseLeave={() => this.setFlag(4, false)}>
+        <div
+          className="MapDrawerIcon"
+          style={{
+            marginRight: "8px"
+          }}>
+          <img
+            src={SVG.markerWhite}
+            style={{
+              opacity: this.state.hoverFlags[4] ? 0 : 1
+            }}
+            alt="Close"
+          />
+          <img
+            src={SVG.markerBlack}
+            style={{
+              opacity: this.state.hoverFlags[4] ? 1 : 0
+            }}
+            alt="Close"
+          />
+        </div>
+        <div
+          className="MapDrawerElement"
+          style={{ color: this.state.hoverFlags[4] ? "#000000" : "#ffffff" }}>
+          Relocate this stage
+        </div>
+      </div>
+    );
+  };
+
+  seeImagesLine = () => {
+    return (
+      <div
+        className="MapDrawerClickable"
+        onClick={() => this.props.onToggleValue(Toggles.CAROUSEL, true, undefined)}
+        onMouseEnter={() => this.setFlag(5, true)}
+        onMouseLeave={() => this.setFlag(5, false)}>
+        <div
+          className="MapDrawerIcon"
+          style={{
+            marginRight: "8px"
+          }}>
+          <img
+            src={SVG.imageWhite}
+            style={{
+              opacity: this.state.hoverFlags[5] ? 0 : 1
+            }}
+            alt="Images"
+          />
+          <img
+            src={SVG.imageBlack}
+            style={{
+              opacity: this.state.hoverFlags[5] ? 1 : 0
+            }}
+            alt="Images"
+          />
+        </div>
+        <div
+          className="MapDrawerElement"
+          style={{ color: this.state.hoverFlags[5] ? "#000000" : "#ffffff" }}>
+          See this stage's images
+        </div>
+      </div>
+    );
+  };
+
   deleteLine = () => {
     return (
       <div
@@ -326,33 +338,30 @@ class MapDrawer extends React.Component {
           })
         }
         onMouseEnter={() => this.setFlag(6, true)}
-        onMouseLeave={() => this.setFlag(6, false)}
-      >
+        onMouseLeave={() => this.setFlag(6, false)}>
         <div
           className="MapDrawerIcon"
           style={{
             marginRight: "8px"
-          }}
-        >
+          }}>
           <img
             src={SVG.deleteWhite}
             style={{
               opacity: this.state.hoverFlags[6] ? 0 : 1
             }}
-            alt="Close"
+            alt="Delete"
           />
           <img
             src={SVG.deleteBlack}
             style={{
               opacity: this.state.hoverFlags[6] ? 1 : 0
             }}
-            alt="Close"
+            alt="Delete"
           />
         </div>
         <div
           className="MapDrawerElement"
-          style={{ color: this.state.hoverFlags[6] ? "#000000" : "#ffffff" }}
-        >
+          style={{ color: this.state.hoverFlags[6] ? "#000000" : "#ffffff" }}>
           Delete this stage
         </div>
       </div>
@@ -367,11 +376,8 @@ class MapDrawer extends React.Component {
     return (
       <div
         className={
-          this.props.drawerEnabled
-            ? "MapDrawerWrapper"
-            : "MapDrawerWrapper MapDrawerWrapperHidden"
-        }
-      >
+          this.props.drawerEnabled ? "MapDrawerWrapper" : "MapDrawerWrapper MapDrawerWrapperHidden"
+        }>
         <div className="MapDrawer">
           <div className="MapDrawerLine">
             <input
@@ -391,6 +397,7 @@ class MapDrawer extends React.Component {
           <div className="MapDrawerSeparator" />
           {this.createLine()}
           {this.relocateLine()}
+          {this.seeImagesLine()}
           {this.deleteLine()}
         </div>
       </div>

@@ -72,9 +72,7 @@ class MapDisplayer extends Component {
     geolocation.on("change:position", () => {
       this.props.onToggleValue(Toggles.GEOLOCATION, true, undefined);
       let coordinates = geolocation.getPosition();
-      positionFeature.setGeometry(
-        coordinates ? new OpenLayers.Point(coordinates) : null
-      );
+      positionFeature.setGeometry(coordinates ? new OpenLayers.Point(coordinates) : null);
     });
 
     return new OpenLayers.VectorLayer({
@@ -97,14 +95,14 @@ class MapDisplayer extends Component {
 
   componentDidMount = () => {
     let countryLayers = this.createCountryLayers();
-    let osmLayer = this.createOSMLayer();
+    // let osmLayer = this.createOSMLayer();
     let overlay = this.createOverlay();
     let geolocation = this.createGeolocation();
     let tripsLayer = this.createTripsLayer();
 
     let map = new OpenLayers.Map({
       target: this.refs.mapDisplayer,
-      layers: [...countryLayers, osmLayer, geolocation, tripsLayer],
+      layers: [...countryLayers, geolocation, tripsLayer /*osmLayer*/],
       overlays: [overlay],
       view: new OpenLayers.View({
         center: [0, 0],
@@ -127,20 +125,14 @@ class MapDisplayer extends Component {
         return;
       }
       let features = [];
-      map.forEachFeatureAtPixel(
-        map.getEventPixel(event.originalEvent),
-        feature => {
-          if (!features.includes(feature)) {
-            features.push(feature);
-          }
+      map.forEachFeatureAtPixel(map.getEventPixel(event.originalEvent), feature => {
+        if (!features.includes(feature)) {
+          features.push(feature);
         }
-      );
+      });
       let feature = undefined;
       for (let singleFeature of features) {
-        if (
-          singleFeature !== undefined &&
-          singleFeature.get("type") !== "path"
-        ) {
+        if (singleFeature !== undefined && singleFeature.get("type") !== "path") {
           feature = singleFeature;
           if (
             singleFeature.get("type") === "geolocation" ||
@@ -188,22 +180,17 @@ class MapDisplayer extends Component {
     });
 
     map.on("singleclick", event => {
-      let feature = map.forEachFeatureAtPixel(
-        map.getEventPixel(event.originalEvent),
-        feature => {
-          if (
-            feature.get("type") === "trip" ||
-            feature.get("type") === "stage" ||
-            feature.get("type") === "geolocation"
-          ) {
-            return feature;
-          }
+      let feature = map.forEachFeatureAtPixel(map.getEventPixel(event.originalEvent), feature => {
+        if (
+          feature.get("type") === "trip" ||
+          feature.get("type") === "stage" ||
+          feature.get("type") === "geolocation"
+        ) {
+          return feature;
         }
-      );
+      });
       let coordinates =
-        feature !== undefined
-          ? feature.getGeometry().getCoordinates()
-          : event.coordinate;
+        feature !== undefined ? feature.getGeometry().getCoordinates() : event.coordinate;
 
       map.getView().animate({
         center: coordinates,
@@ -283,8 +270,7 @@ MapDisplayer.propTypes = {
   map: PropTypes.instanceOf(OpenLayers.Map),
   overlayCollapsed: PropTypes.bool.isRequired,
   countries: PropTypes.arrayOf(PropTypes.string).isRequired,
-  countryLayers: PropTypes.arrayOf(PropTypes.instanceOf(OpenLayers.VectorLayer))
-    .isRequired,
+  countryLayers: PropTypes.arrayOf(PropTypes.instanceOf(OpenLayers.VectorLayer)).isRequired,
   mode: PropTypes.oneOf(Object.keys(Modes)).isRequired,
   drawerEnabled: PropTypes.bool.isRequired,
   pathLayers: PropTypes.arrayOf(PropTypes.instanceOf(OpenLayers.VectorLayer)),

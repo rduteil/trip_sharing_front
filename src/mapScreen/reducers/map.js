@@ -19,7 +19,7 @@ let initialState = {
   countries: [
     "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/iceland.geojson",
     "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/france.geojson",
-    //"https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/usa.geojson",
+    "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/usa.geojson",
     "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/mexico.geojson",
     "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/namibia.geojson",
     "https://raw.githubusercontent.com/rduteil/GeoJSON/master/per_country/ireland.geojson",
@@ -180,9 +180,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       let stageId = state.selectedStage + 1;
       let formerCoordinates = updatedLayer
@@ -227,9 +225,7 @@ export default (state = initialState, action) => {
       );
       updatedLayer.getSource().addFeature(transportation);
 
-      updatedMap
-        .getOverlayById("overlay")
-        .setPosition(stage.getGeometry().getCoordinates());
+      updatedMap.getOverlayById("overlay").setPosition(stage.getGeometry().getCoordinates());
 
       return Object.assign({}, state, {
         map: updatedMap,
@@ -243,9 +239,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       updatedLayer
         .getSource()
@@ -275,9 +269,7 @@ export default (state = initialState, action) => {
       );
 
       // Deep copy of the current trip layer
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       // Deep copy and update of this trip's path coordinates
       let coordinates = updatedLayer
@@ -294,15 +286,11 @@ export default (state = initialState, action) => {
         .setCoordinates(coordinates);
 
       // Update coordinates of the relocated stage
-      let currentStage = updatedLayer
-        .getSource()
-        .getFeatureById(state.selectedStage);
+      let currentStage = updatedLayer.getSource().getFeatureById(state.selectedStage);
       currentStage.getGeometry().setCoordinates(action.point);
 
       // If the relocated stage is not the last one, update the coordinates of the next transportation icon
-      let nextStage = updatedLayer
-        .getSource()
-        .getFeatureById(state.selectedStage + 1);
+      let nextStage = updatedLayer.getSource().getFeatureById(state.selectedStage + 1);
       if (nextStage !== null) {
         let nextPosition = nextStage.getGeometry().getCoordinates();
         nextPosition = [
@@ -367,9 +355,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       updatedLayer
         .getSource()
@@ -394,9 +380,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
       updatedLayer
         .getSource()
         .getFeatureById(state.selectedStage)
@@ -420,9 +404,7 @@ export default (state = initialState, action) => {
         let updatedTripsLayer = duplicate(state.tripsLayer);
         updatedTripsLayer
           .getSource()
-          .removeFeature(
-            updatedTripsLayer.getSource().getFeatureById(state.selectedTrip)
-          );
+          .removeFeature(updatedTripsLayer.getSource().getFeatureById(state.selectedTrip));
         // Remove the trip's layer
         updatedMap.getLayers().forEach(layer => {
           if (layer.get("trip") === state.selectedTrip) {
@@ -450,9 +432,7 @@ export default (state = initialState, action) => {
       // The selected stage and all those after it are going to oblivion
       else {
         // Deep copy of the current trip layer
-        let updatedLayer = duplicate(
-          extract(state.pathLayers, "trip", state.selectedTrip)
-        );
+        let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
         // Get current trip path
         let pathCoordinates = [
           ...updatedLayer
@@ -552,9 +532,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       let currentPhotos = [
         ...updatedLayer
@@ -606,9 +584,7 @@ export default (state = initialState, action) => {
         layer => layer.get("trip") !== state.selectedTrip
       );
 
-      let updatedLayer = duplicate(
-        extract(state.pathLayers, "trip", state.selectedTrip)
-      );
+      let updatedLayer = duplicate(extract(state.pathLayers, "trip", state.selectedTrip));
 
       let currentCaptions = [
         ...updatedLayer

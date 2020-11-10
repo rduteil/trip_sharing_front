@@ -1,6 +1,8 @@
 import { mergeMap, catchError } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
+import { Connection } from "../../helpers/strings";
+
 export const ValidateActions = {
   VALIDATE_PENDING: "VALIDATE_PENDING",
   VALIDATE_SUCCESS: "VALIDATE_SUCCESS",
@@ -26,13 +28,13 @@ const validateFailure = code => ({
 const getUrlFromValidation = validation => {
   switch (validation) {
     case 0: {
-      return "https://44c0v.sse.codesandbox.io/verify/";
+      return Connection.BASE_URL + Connection.ENDPOINTS.VERIFY;
     }
     case 1: {
-      return "https://44c0v.sse.codesandbox.io/allow/";
+      return Connection.BASE_URL + Connection.ENDPOINTS.ALLOW;
     }
     default: {
-      return "https://44c0v.sse.codesandbox.io/verify/";
+      return Connection.BASE_URL + Connection.ENDPOINTS.VERIFY;
     }
   }
 };

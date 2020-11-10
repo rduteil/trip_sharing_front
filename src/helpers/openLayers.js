@@ -5,15 +5,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import Feature from "ol/Feature";
 import Overlay from "ol/Overlay";
-import {
-  Fill,
-  Stroke,
-  Style,
-  Text,
-  Icon,
-  Circle,
-  RegularShape
-} from "ol/style";
+import { Fill, Stroke, Style, Text, Icon, Circle, RegularShape } from "ol/style";
 import { toLonLat, fromLonLat, transform } from "ol/proj";
 import TileLayer from "ol/layer/Tile";
 import OSMSource from "ol/source/OSM";
@@ -67,11 +59,11 @@ const Styles = {
   }),
   country: new Style({
     stroke: new Stroke({
-      color: "rgba(51, 153, 204, 1)",
+      color: "rgba(221, 188, 215, 1)",
       width: 1
     }),
     fill: new Fill({
-      color: "rgba(51, 153, 204, 0.1)"
+      color: "rgba(242, 239, 233, 1)"
     }),
     text: new Text({
       font: "12px Roboto,sans-serif"
@@ -121,5 +113,5 @@ export default {
   fromLongitudeLatitude: fromLonLat,
   transform: transform,
   Geolocation: Geolocation,
-  Projection: Projection,
+  Projection: Projection
 };

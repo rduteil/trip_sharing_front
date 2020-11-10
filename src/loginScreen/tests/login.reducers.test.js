@@ -7,6 +7,7 @@ describe("login reducer", () => {
     status: Status.IDLE,
     error: 0
   };
+
   it("initial state", () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
@@ -36,6 +37,41 @@ describe("login reducer", () => {
     expect(reducer(initialState, { type: LoginActions.REGISTER_PENDING })).toEqual({
       error: 0,
       status: Status.PENDING
+    });
+  });
+
+  it("register success", () => {
+    expect(reducer(initialState, { type: LoginActions.REGISTER_SUCCESS })).toEqual({
+      error: 0,
+      status: Status.SUCCESS
+    });
+  });
+
+  it("register failure", () => {
+    expect(reducer(initialState, { type: LoginActions.REGISTER_FAILURE, code: -5 })).toEqual({
+      error: -5,
+      status: Status.FAILURE
+    });
+  });
+
+  it("get reset pending", () => {
+    expect(reducer(initialState, { type: LoginActions.GET_RESET_PENDING })).toEqual({
+      error: 0,
+      status: Status.PENDING
+    });
+  });
+
+  it("get reset success", () => {
+    expect(reducer(initialState, { type: LoginActions.GET_RESET_SUCCESS })).toEqual({
+      error: 0,
+      status: Status.SUCCESS
+    });
+  });
+
+  it("get reset failure", () => {
+    expect(reducer(initialState, { type: LoginActions.GET_RESET_FAILURE, code: -1 })).toEqual({
+      error: -1,
+      status: Status.FAILURE
     });
   });
 });
